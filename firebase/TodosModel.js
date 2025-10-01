@@ -25,3 +25,24 @@ export const getAllTodos = async(success,unsuccess) => {
     }
     
 }
+
+export const geteUserByEmail = async(email,success,unsuccess) => {
+
+    console.log(`email: ${email}`)
+    let userRefID 
+    try{
+         let qry = query(userColl,where('email','==',email))
+   let qrySnapshot = await getDocs(qry)
+    qrySnapshot.forEach((doc)=>{
+        userRefID = doc.ref
+    })
+    console.log(`userRefID: ${userRefID}`)
+    qry = query(todosColl,where('user_id','==',userRefID))
+    qrySnapshot = await getDocs(qry)
+    qrySnapshot.forEach((doc)=>{
+        success(doc)
+    })
+
+    }catch(e){unsuccess(e)}
+   
+}

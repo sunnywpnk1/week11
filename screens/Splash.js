@@ -24,10 +24,10 @@ export const SplashScreen = ({navigation}) => {
         }))
     }
     useEffect(() => {
-        TodosModel.getAllTodos(success,unsuccess)
+        TodosModel.geteUserByEmail("sunnywpnk@gmail.com",success,unsuccess)
         setTimeout(() => {
             navigation.navigate('MainDrawer')
-            navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
+            // navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
         }, 2500)
     }, [])
 
