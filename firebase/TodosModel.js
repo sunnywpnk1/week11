@@ -16,9 +16,12 @@ export const getAllTodos = async(success,unsuccess) => {
         const qry = query(todosColl) //todosColl ทำหน้าที่คล้าย pointer
         const qrySnapshot = await getDocs(qry)
         //loop all item
-        
+        qrySnapshot.forEach((doc)=>{
+            console.log(`Doc: ${doc.id} => task: ${doc.data().task}`)
+            success(doc)
+        })
     }catch(e){
-        unsuccess()
+        unsuccess(e)
     }
     
 }

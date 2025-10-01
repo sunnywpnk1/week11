@@ -6,6 +6,7 @@ import {DrawerNav} from './screens/navigators/DrawerNav'
 // เพิ่มการ import 17-9-25
 import {Provider} from 'react-redux'
 import store from './redux/store'
+import {StackNav} from './screens/navigators/StackNav'
 
 export default function App() {
 
@@ -14,7 +15,7 @@ export default function App() {
       {/* เพิ่ม Provider */}
       <Provider store={store}>
         <NavigationContainer>
-          <DrawerNav />
+          <StackNav />
         </NavigationContainer>
       </Provider>
     </SafeAreaProvider>
