@@ -43,6 +43,46 @@ export const geteUserByEmail = async(email,success,unsuccess) => {
         success(doc)
     })
 
-    }catch(e){unsuccess(e)}
+    }catch(e){
+        unsuccess(e)
+    }
+   
+}
+
+export const addTask = async(newtask,users,success,unsuccess) => {
+        console.log(`newtask: ${newtask}`)
+        console.log(`user_id: ${users[0].user_id}`)
+
+        const docData = {
+            task:newtask, //string
+            user_id:users[0].user_id, //obj type ref.
+            status:false, //boolean
+
+        }
+        try{
+            const docRef = await addDoc(todosColl,docData)
+            console.log(`Doc Ref: ${docRef.id}`)
+            success(docRef)
+        }catch(e){
+            unsuccess(e)
+        }
+}
+
+export const geteUserRefID = async(email,success,unsuccess) => {
+
+    console.log(`email: ${email}`)
+    let userRefID 
+    try{
+         let qry = query(userColl,where('email','==',email))
+   let qrySnapshot = await getDocs(qry)
+    qrySnapshot.forEach((doc)=>{
+        userRefID = doc.ref
+    })
+    console.log(`userRefID: ${userRefID}`)
+    success(userRefID)
+
+    }catch(e){
+        unsuccess(e)
+    }
    
 }

@@ -23,8 +23,15 @@ export const SplashScreen = ({navigation}) => {
             task:doc.data().task
         }))
     }
+
+    const loadUser2Redux = (doc_id) =>{
+        //add user in redux
+    }
+
+
     useEffect(() => {
-        TodosModel.geteUserByEmail("sunnywpnk@gmail.com",success,unsuccess)
+        //TodosModel.geteUserByEmail("sunnywpnk@gmail.com",success,unsuccess)
+        TodosModel.getUserRefID("sunnywpnk@gmail.com",loadUser2Redux,unsuccess)
         setTimeout(() => {
             navigation.navigate('MainDrawer')
             // navigation.reset({ index: 0, routes: [{ name: 'Login' }] })
