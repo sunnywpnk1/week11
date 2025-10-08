@@ -5,6 +5,9 @@ import { useEffect } from 'react'
 import * as TodosModel from '../firebase/TodosModel'
 import { useDispatch } from 'react-redux'
 import {addTodo} from '../redux/todos/todosSlicer'
+import { addUser } from '../redux/todos/usersSlicer'
+import { doc } from 'firebase/firestore'
+
 export const SplashScreen = ({navigation}) => {
     //const navigation = props.nav
     //const route = props.route
@@ -24,8 +27,9 @@ export const SplashScreen = ({navigation}) => {
         }))
     }
 
-    const loadUser2Redux = (doc_id) =>{
+    const loadUser2Redux = (doc_ref) =>{
         //add user in redux
+        dispatch(addUser(doc_ref))
     }
 
 

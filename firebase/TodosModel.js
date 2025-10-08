@@ -4,6 +4,7 @@ import {
     orderBy,limit,where,addDoc, doc,updateDoc, deleteDoc
 } from 'firebase/firestore'
 
+import { createSlicer } from '@reduxjs/toolkit'
 // เป็น pointer ที่คอยควบการทำงานที่เห็นภาพทั้งหมดใน database
 const db = getFirestore(todosApp)
 const todosColl = collection(db,'todos') 
@@ -68,7 +69,7 @@ export const addTask = async(newtask,users,success,unsuccess) => {
         }
 }
 
-export const geteUserRefID = async(email,success,unsuccess) => {
+export const getUserRefID = async(email,success,unsuccess) => {
 
     console.log(`email: ${email}`)
     let userRefID 

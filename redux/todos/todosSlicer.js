@@ -14,7 +14,7 @@ const todosSlice = createSlice({
         addTodo(state, action) {
             console.log(`Action = ${action.type}`)
             console.log(`Payload = ${action.payload}`)
-            const lastID = Math.max(...state.map(todo => todo.id))
+            //const lastID = Math.max(...state.map(todo => todo.id))
             state.push({ id:action.payload.id, task: action.payload.task })
         },
         editTodo(state, action) {

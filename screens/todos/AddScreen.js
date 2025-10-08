@@ -1,21 +1,35 @@
 import {Text, StyleSheet, View, TouchableOpacity, TextInput} from 'react-native'
-import {useState} from 'react'
+import { useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { addTodo } from '../../redux/todos/todosSlicer'
-
+import * as TodosModel from '../../firebase/TodosModel'
 export const AddScreen = (props) => {
   const navigation = props.nav.navigation
   //console.log(`navigation: ${navigation.navigate}`)
   // const addTodo = props.addTodo
   // console.log(`addTodo: ${addTodo}`)
   const dispatch = useDispatch()
+  const users = useSelector((state) => state.users)
 
   const [task, setTask] = useState()
+
+  const unsuccess = (error) =>{
+    
+    console.log(`Error: ${error}`)
+
+  }
+
+  const success = (docRef_id) =>{
+   dispatch(addTodo({id:docRef_id.id,task:task}))
+   setTask('')
+  }
+
   const onSavePress = () => {
     //addTodo(task)
-    dispatch(addTodo(task))
-    setTask('')
+    // dispatch(addTodo(task))
+    // setTask('')
+    TodosModel.addTask(task,users,success,unsuccess)
   }
 
   return (
